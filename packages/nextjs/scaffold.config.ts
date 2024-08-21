@@ -10,7 +10,12 @@ export type ScaffoldConfig = {
 
 const scaffoldConfig = {
   // The networks on which your DApp is live
-  targetNetworks: [chains.hardhat],
+  targetNetworks: [
+    {
+      ...chains.hardhat,
+      rpcUrls: { default: { http: [process.env.NEXT_PUBLIC_HARDHAT_HTTP_RPC_URL || "http://127.0.0.1:8545"] } },
+    },
+  ],
 
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect if you only target the local network (default is 4000)
